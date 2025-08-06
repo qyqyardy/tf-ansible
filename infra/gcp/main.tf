@@ -1,6 +1,6 @@
 provider "google" {
-  project = "your-gcp-project-id" # Ganti dengan Project ID Anda
-  region  = "asia-southeast1"      # Ganti dengan region yang Anda inginkan
+  project = "your-gcp-project-id" 
+  region  = "asia-southeast1"      
 }
 
 
