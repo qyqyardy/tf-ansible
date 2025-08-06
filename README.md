@@ -10,27 +10,7 @@ Menggunakan kombinasi Terraform untuk provisioning infrastruktur dan Ansible unt
 * **Monitoring Stack**: Implementasi Prometheus dan Grafana untuk memantau performa dan kesehatan klaster MariaDB secara real-time.
 * **Automated Backup**: Solusi backup harian otomatis menggunakan Percona XtraBackup dan cronjob.
 
-## Struktur Repositori
-
-TF-ANSIBLE/
-├── ansible/
-│ ├── inventory.ini
-│ ├── playbooks/
-│ │ ├── main.yml
-│ │ ├── monitoring.yml
-│ │ └── roles/
-│ │ ├── backup/
-│ │ │ ├── tasks/
-│ │ │ └── templates/
-│ │ ├── mariadb_cluster/
-│ │ │ ├── tasks/
-│ │ │ └── templates/
-│ │ └── monitoring/
-│ │ ├── tasks/
-│ │ └── templates/
-├── infra/
-│ └── gcp/
-│ └── main.tf
+<pre> ## Struktur Repositori ``` TF-ANSIBLE/ ├── ansible/ │ ├── inventory.ini │ ├── playbooks/ │ │ ├── main.yml │ │ ├── monitoring.yml │ │ └── roles/ │ │ ├── backup/ │ │ │ ├── tasks/ │ │ │ └── templates/ │ │ ├── mariadb_cluster/ │ │ │ ├── tasks/ │ │ │ └── templates/ │ │ └── monitoring/ │ │ ├── tasks/ │ │ └── templates/ ├── infra/ │ └── gcp/ │ └── main.tf ``` </pre>
 
 ## Prasyarat
 
