@@ -1,0 +1,34 @@
+---
+- name: Install MariaDB and Galera packages
+  apt:
+    name:
+      - mariadb-server
+      - mariadb-client
+      - galera-4
+      - rsync
+    state: present
+    update_cache: yes
+
+- name: Copy MariaDB Galera configuration
+  template:
+    src: galera.cnf.j2
+    dest: /etc/mysql/conf.d/galera.cnf
+    mode: '0644'
+
+- name: Start MariaDB on first node
+  command: "systemctl start mariadb@bootstrap"
+  when: inventory_hostname == groups['mariadb_nodes'][0]
+  notify:
+    - Wait for MariaDB to be running
+
+- name: Start MariaDB on other nodes
+  command: "systemctl start mariadb"
+  when: inventory_hostname != groups['mariadb_nodes'][0]
+  notify:
+    - Wait for MariaDB to be running
+
+- name: Wait for MariaDB to be running
+  wait_for:
+    port: 3306
+    timeout: 30
+    host: "{{ inventory_hostname }}"

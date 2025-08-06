@@ -1,0 +1,7 @@
+[mysqld]
+bind-address = 0.0.0.0
+wsrep_provider = /usr/lib/galera/libgalera_smm.so
+wsrep_cluster_name = {{ galera_cluster_name }}
+wsrep_cluster_address = {{ galera_cluster_address }}
+wsrep_sst_method = rsync
+wsrep_node_address = {{ ansible_host }}

@@ -1,0 +1,39 @@
+---
+- name: Install Prometheus and Grafana
+  apt:
+    name:
+      - prometheus
+      - grafana
+    state: present
+    update_cache: yes
+
+- name: Install node_exporter
+  apt:
+    name: node-exporter
+    state: present
+
+- name: Copy Prometheus configuration
+  template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus/prometheus.yml
+    mode: '0644'
+  notify:
+    - Restart prometheus
+
+- name: Configure Grafana data source
+  template:
+    src: grafana-datasources.yml.j2
+    dest: /etc/grafana/provisioning/datasources/prometheus.yml
+    mode: '0644'
+  notify:
+    - Restart grafana
+
+- name: Restart prometheus
+  systemd:
+    name: prometheus
+    state: restarted
+
+- name: Restart grafana
+  systemd:
+    name: grafana
+    state: restarted

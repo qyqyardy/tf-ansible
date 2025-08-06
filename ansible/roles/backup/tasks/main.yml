@@ -1,0 +1,20 @@
+---
+- name: Install Percona XtraBackup
+  apt:
+    name: percona-xtrabackup-80
+    state: present
+    update_cache: yes
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Copy backup script
+  template:
+    src: backup_script.sh.j2
+    dest: /usr/local/bin/mariadb_backup.sh
+    mode: '0755'
+
+- name: Schedule daily backup using cron
+  cron:
+    name: "mariadb daily backup"
+    minute: "0"
+    hour: "2"
+    job: "/usr/local/bin/mariadb_backup.sh"

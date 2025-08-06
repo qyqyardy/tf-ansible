@@ -1,0 +1,16 @@
+#!/bin/bash
+BACKUP_DIR="/var/backups/mariadb"
+DATE=$(date +"%Y-%m-%d_%H-%M-%S")
+FULL_BACKUP_DIR="${BACKUP_DIR}/full/${DATE}"
+
+# Buat direktori jika belum ada
+mkdir -p "${FULL_BACKUP_DIR}"
+
+# Lakukan backup penuh
+innobackupex --user=root --password="my_db_password" --stream=tar "${FULL_BACKUP_DIR}" | gzip > "${FULL_BACKUP_DIR}.tar.gz"
+
+# Hapus direktori sementara
+rm -rf "${FULL_BACKUP_DIR}"
+
+# Hapus backup yang lebih lama dari 7 hari
+find "${BACKUP_DIR}" -type f -name "*.tar.gz" -mtime +7 -exec rm {} \;

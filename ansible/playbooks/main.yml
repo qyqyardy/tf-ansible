@@ -1,0 +1,23 @@
+---
+- name: Setup MariaDB Galera Cluster
+  hosts: mariadb_nodes
+  become: yes
+  vars:
+    galera_cluster_name: "my_galera_cluster"
+    galera_cluster_address: "gcomm://{{ hostvars['1.2.3.4']['ansible_host'] }},{{ hostvars['5.6.7.8']['ansible_host'] }},{{ hostvars['9.10.11.12']['ansible_host'] }}"
+  roles:
+    - mariadb_cluster
+
+- name: Implement Automated Backup Solution
+  hosts: mariadb_nodes[0] 
+  become: yes
+  roles:
+    - backup
+
+- name: Setup Monitoring Stack
+  hosts: monitoring
+  become: yes
+  vars:
+    mariadb_node_ips: "{{ groups['mariadb_nodes'] }}"
+  roles:
+    - monitoring
