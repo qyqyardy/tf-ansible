@@ -12,7 +12,25 @@ Menggunakan kombinasi Terraform untuk provisioning infrastruktur dan Ansible unt
 
 ## Struktur Repositori
 
-
+TF-ANSIBLE/
+├── ansible/
+│   ├── inventory.ini
+│   ├── playbooks/
+│   │   ├── main.yml
+│   │   └── monitoring.yml
+│   └── roles/
+│       ├── backup/
+│       │   ├── tasks/
+│       │   └── templates/
+│       ├── mariadb_cluster/
+│       │   ├── tasks/
+│       │   └── templates/
+│       └── monitoring/
+│           ├── tasks/
+│           └── templates/
+├── infra/
+    └── gcp/
+        └── main.tf
 
 ## Prasyarat
 
