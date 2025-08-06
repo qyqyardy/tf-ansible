@@ -14,23 +14,23 @@ Menggunakan kombinasi Terraform untuk provisioning infrastruktur dan Ansible unt
 
 TF-ANSIBLE/
 ├── ansible/
-│   ├── inventory.ini
-│   ├── playbooks/
-│   │   ├── main.yml
-│   │   └── monitoring.yml
-│   └── roles/
-│       ├── backup/
-│       │   ├── tasks/
-│       │   └── templates/
-│       ├── mariadb_cluster/
-│       │   ├── tasks/
-│       │   └── templates/
-│       └── monitoring/
-│           ├── tasks/
-│           └── templates/
+│ ├── inventory.ini
+│ ├── playbooks/
+│ │ ├── main.yml
+│ │ ├── monitoring.yml
+│ │ └── roles/
+│ │ ├── backup/
+│ │ │ ├── tasks/
+│ │ │ └── templates/
+│ │ ├── mariadb_cluster/
+│ │ │ ├── tasks/
+│ │ │ └── templates/
+│ │ └── monitoring/
+│ │ ├── tasks/
+│ │ └── templates/
 ├── infra/
-    └── gcp/
-        └── main.tf
+│ └── gcp/
+│ └── main.tf
 
 ## Prasyarat
 
